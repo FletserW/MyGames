@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Plataforma.java</file>
-            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Portao.java</file>
-            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Trampolim.java</file>
+            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/fases/Fase_1.java</file>
             <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/main/Container.java</file>
             <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Player.java</file>
-            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Fase_1.java</file>
-            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/modelo/Escada.java</file>
+            <file>file:/C:/Users/reido/OneDrive/Documents/.TI/My-Projetc/MyGame/MyGames/src/menus/TelaInicial.java</file>
         </group>
     </open-files>
 </project-private>

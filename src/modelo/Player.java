@@ -76,14 +76,6 @@ public class Player {
         x += dx;
         y += dy;
     }
-    
-    private void carregarImagensSubindoEscada() {
-        imagensSubindoEscada = new Image[3]; // Criando um array para armazenar as imagens
-        for (int i = 0; i < 3; i++) {
-            ImageIcon ref = new ImageIcon("res/Player/SubindoEscada" + (i + 1) + ".png");
-            imagensSubindoEscada[i] = ref.getImage(); // Carregando as imagens
-        }
-    }
 
     public void keyPressed(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
