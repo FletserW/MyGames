@@ -1,10 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package fases;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import menus.MenuPausa;
 import modelo.Escada;
 import modelo.Plataforma;
@@ -15,25 +21,14 @@ import modelo.Trampolim;
 public class MecanicasFase {
 
     private boolean mostrarMensagem;
-    private boolean pausado;
-    private MenuPausa menuPausa;
+    private boolean mostrarPause;
+    private Image mensagemImg;
 
     public MecanicasFase() {
-        pausado = false;
-        menuPausa = new MenuPausa(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Define as ações dos botões do menu de pausa
-                String command = e.getActionCommand();
-                if (command.equals("Continuar")) {
-                    despausar();
-                } else if (command.equals("Resetar")) {
-                    //reiniciarFase();
-                } else if (command.equals("Sair")) {
-                    // Implemente a lógica para sair do jogo, se necessário
-                }
-            }
-        });
+        // Carrega a imagem da mensagem
+        ImageIcon ref = new ImageIcon(getClass().getResource("/res/menu_pause.png"));
+        mensagemImg = ref.getImage();
+
     }
 
     public void verificarColisao(Player player, ArrayList<Plataforma> plataformas, ArrayList<Escada> escadas,
@@ -109,40 +104,31 @@ public class MecanicasFase {
         player.setDy(0); // Reseta a velocidade vertical
     }
 
-    public void pausar() {
-        pausado = true;
-        System.out.println("Jogo pausado");
-    }
-
-    public void despausar() {
-        pausado = false;
-        System.out.println("Jogo despausado");
-    }
-
-    public boolean isPausado() {
-        return pausado;
-    }
-
-    public void desenharMenuPausa(Graphics g) {
-        if (pausado) {
-            menuPausa.paintComponent(g);
-        }
-    }
-
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            System.out.println("Tecla ESC pressionada");
-            if (pausado) {
-                despausar();
-            } else {
-                pausar();
-            }
+            mostrarPause = true; // Ativa a flag para mostrar a mensagem
+            System.out.println("Tecla ESC");
         }
     }
 
     public void keyReleased(KeyEvent e) {
         // Implemente aqui o tratamento de eventos quando uma tecla é solta
     }
+
+    public void desenharMensagem(Graphics g, int larguraTela, int alturaTela) {
+        if (mostrarPause) {
+            // Calcula a posição para centralizar a mensagem
+            int x = (larguraTela - mensagemImg.getWidth(null)) / 2;
+            int y = (alturaTela - mensagemImg.getHeight(null)) / 2;
+            // Desenha a mensagem no centro da tela
+            g.drawImage(mensagemImg, x, y, null);
+        }
+    }
+
+    public void setMostrarPause(boolean mostrarPause) {
+        this.mostrarPause = mostrarPause;
+    }
     
     
 }
+

@@ -1,5 +1,6 @@
 package main;
 
+
 import javax.swing.JFrame;
 import fases.Fase_1;
 import fases.MecanicasFase;

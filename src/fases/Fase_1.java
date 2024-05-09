@@ -37,7 +37,7 @@ public class Fase_1 extends JPanel implements ActionListener {
     public Fase_1() {
         setFocusable(true);
         setDoubleBuffered(true);
-        
+
         // Carrega a imagem de fundo da fase
         ImageIcon ref = new ImageIcon(getClass().getResource("/res/Background.png"));
         fundo = ref.getImage();
@@ -73,22 +73,6 @@ public class Fase_1 extends JPanel implements ActionListener {
 
         // Adiciona um KeyListener para as teclas do jogador
         addKeyListener(new TecladoAdapter());
-        
-        // Configura o menu de pausa
-        menuPausa = new MenuPausa(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Define as ações dos botões do menu de pausa
-                String command = e.getActionCommand();
-                if (command.equals("Continuar")) {
-                    mecanicas.despausar();
-                } else if (command.equals("Resetar")) {
-                    mecanicas.reiniciarFase(player);
-                } else if (command.equals("Sair")) {
-                    // Implemente a lógica para sair do jogo, se necessário
-                }
-            }
-        });
 
         // Inicia o timer
         timer = new Timer(5, this);
@@ -122,8 +106,9 @@ public class Fase_1 extends JPanel implements ActionListener {
             graficos.drawString("Parabéns! Você concluiu a fase!", 300, 100);
         }
         
-        // Desenha o menu de pausa
-        mecanicas.desenharMenuPausa(g);
+        // Desenha a mensagem se necessário
+        mecanicas.desenharMensagem(g, getWidth(), getHeight());
+
     }
 
     @Override
@@ -137,22 +122,13 @@ public class Fase_1 extends JPanel implements ActionListener {
 
     public class TecladoAdapter extends KeyAdapter {
 
-        @Override
+        @Override  
         public void keyPressed(KeyEvent tecla) {
-            // Verifica se a tecla "R" foi pressionada
             if (tecla.getKeyCode() == KeyEvent.VK_R) {
-                // Reinicia a fase
                 mecanicas.reiniciarFase(player);
-            } else if (tecla.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                // Verifica se a tecla "ESC" foi pressionada
-                System.out.println("Tecla ESC pressionada");
-                if (mecanicas.isPausado()) {
-                    mecanicas.despausar();
-                } else {
-                    mecanicas.pausar();
-                }
+            } else if (tecla.getKeyCode() == KeyEvent.VK_ESCAPE) { // Adiciona a detecção da tecla "ESC"
+                mecanicas.keyPressed(tecla);
             } else {
-                // Caso contrário, trata a tecla pressionada pelo jogador
                 player.keyPressed(tecla);
             }
         }
@@ -163,7 +139,7 @@ public class Fase_1 extends JPanel implements ActionListener {
             player.keyRelease(tecla);
         }
     }
-    
+
     // Método para carregar uma imagem
     private Image loadImage(String nomeArquivo) {
         ImageIcon imagemIcon = new ImageIcon(nomeArquivo);
@@ -173,6 +149,5 @@ public class Fase_1 extends JPanel implements ActionListener {
     public void setMecanicas(MecanicasFase mecanicas) {
         this.mecanicas = mecanicas;
     }
-    
-    
+
 }
